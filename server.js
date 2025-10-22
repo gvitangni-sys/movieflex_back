@@ -10,32 +10,32 @@ app.use(
   cors({
     origin: (origin, callback) => {
       // En développement, autoriser toutes les origines
-      if (process.env.NODE_ENV !== 'production') {
+      if (process.env.NODE_ENV !== "production") {
         return callback(null, true);
       }
-      
+
       // En production, vérifier l'origine
       const allowedOrigins = [
-        'https://netflix-alpha-sable.vercel.app',
-        'https://netflix-clone-wj56.onrender.com',
-        process.env.FRONTEND_URL
+        "https://movieflex-front.vercel.app",
+        "https://movieflex-back.onrender.com",
+        process.env.FRONTEND_URL,
       ].filter(Boolean); // Supprimer les valeurs null/undefined
-      
+
       // Nettoyer les URLs pour enlever les barres obliques finales
-      const cleanAllowedOrigins = allowedOrigins.map(url => 
-        url ? url.replace(/\/$/, '') : url
+      const cleanAllowedOrigins = allowedOrigins.map((url) =>
+        url ? url.replace(/\/$/, "") : url
       );
-      
-      if (!origin || cleanAllowedOrigins.includes(origin.replace(/\/$/, ''))) {
+
+      if (!origin || cleanAllowedOrigins.includes(origin.replace(/\/$/, ""))) {
         callback(null, true);
       } else {
-        console.log('CORS blocked for origin:', origin);
-        callback(new Error('Not allowed by CORS'));
+        console.log("CORS blocked for origin:", origin);
+        callback(new Error("Not allowed by CORS"));
       }
     },
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   })
 );
 
@@ -53,9 +53,11 @@ app.use((req, res, next) => {
 
 // Referrer whitelist (éviter hotlinking de flux)
 const allowedReferrers = [
-  'https://netflix-alpha-sable.vercel.app',
-  process.env.FRONTEND_URL
-].filter(Boolean).map(url => url ? url.replace(/\/$/, '') : url);
+  "https://movieflex-front.vercel.app",
+  process.env.FRONTEND_URL,
+]
+  .filter(Boolean)
+  .map((url) => (url ? url.replace(/\/$/, "") : url));
 
 app.use((req, res, next) => {
   const isMedia =
@@ -67,7 +69,7 @@ app.use((req, res, next) => {
   }
   const ref = req.get("referer") || req.get("origin") || "";
   if (!ref) return res.status(403).end();
-  const cleanRef = ref.replace(/\/$/, '');
+  const cleanRef = ref.replace(/\/$/, "");
   const ok = allowedReferrers.some((a) => cleanRef.startsWith(a));
   if (!ok) return res.status(403).end();
   next();
@@ -81,8 +83,8 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("✅ Connecté à MongoDB"))
-  .catch((err) => console.error("❌ Erreur de connexion MongoDB:", err));
+  .then(() => console.log(" Connecté à MongoDB"))
+  .catch((err) => console.error("Erreur de connexion MongoDB:", err));
 
 // Routes
 app.use("/auth", require("./routes/auth"));
@@ -115,6 +117,6 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Serveur démarré sur le port ${PORT}`);
-  console.log(`📱 Environnement: ${process.env.NODE_ENV}`);
+  console.log(` Serveur démarré sur le port ${PORT}`);
+  console.log(` Environnement: ${process.env.NODE_ENV}`);
 });

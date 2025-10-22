@@ -3,7 +3,7 @@ const crypto = require("crypto");
 // Clé secrète pour chiffrer/déchiffrer les URLs (à stocker dans .env en production)
 const SECRET_KEY =
   process.env.SECURITY_SECRET_KEY ||
-  "g9oLTAhpwsk71SKLzvnkQBZLExXYPezzCxanELae5Thm17Qh32iOG_gDeAAuqODl";
+  "Q1bMhGOXdIcQWdW5-xEjYbN5G5pJeBkPLKOo88pD49aM7P1Vch8MFV1_8SLQcxz4URIJky56AxrnE-HudSvkXw";
 
 // Middleware pour vérifier les référents et empêcher l'accès direct
 const securityMiddleware = (req, res, next) => {

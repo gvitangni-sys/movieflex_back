@@ -15,7 +15,7 @@ const fs = require("fs");
 const Movie = require("../models/Movie");
 
 // Helper: build initial catalog with direct URLs to Vercel assets
-const FRONTEND_BASE_URL = "https://netflix-alpha-sable.vercel.app";
+const FRONTEND_BASE_URL = "https://movieflex-front.vercel.app";
 
 async function ensureCatalogSeeded() {
   const count = await Movie.countDocuments();
@@ -161,7 +161,7 @@ router.get("/:id/watch", authMiddleware, canWatchMovies, async (req, res) => {
     }
 
     // En production, utiliser l'URL directe vers Vercel
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === "production") {
       res.json({
         movie: {
           id: movie._id,
