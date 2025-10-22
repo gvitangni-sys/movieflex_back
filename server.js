@@ -16,7 +16,7 @@ app.use(
 
       // En production, vérifier l'origine
       const allowedOrigins = [
-        "https://movieflex-front.vercel.app",
+        "https://movieflex-bay.vercel.app",
         "https://movieflex-back.onrender.com",
         process.env.FRONTEND_URL,
       ].filter(Boolean); // Supprimer les valeurs null/undefined
@@ -53,7 +53,7 @@ app.use((req, res, next) => {
 
 // Referrer whitelist (éviter hotlinking de flux)
 const allowedReferrers = [
-  "https://movieflex-front.vercel.app",
+  "https://movieflex-bay.vercel.app",
   process.env.FRONTEND_URL,
 ]
   .filter(Boolean)

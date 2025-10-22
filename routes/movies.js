@@ -15,7 +15,7 @@ const fs = require("fs");
 const Movie = require("../models/Movie");
 
 // Helper: build initial catalog with direct URLs to Vercel assets
-const FRONTEND_BASE_URL = "https://movieflex-front.vercel.app";
+const FRONTEND_BASE_URL = "https://movieflex-bay.vercel.app";
 
 async function ensureCatalogSeeded() {
   const count = await Movie.countDocuments();
