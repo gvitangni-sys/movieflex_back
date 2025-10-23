@@ -24,17 +24,6 @@ async function ensureCatalogSeeded() {
   // Correspondances exactes image/vidéo avec URLs directes
   const movieMappings = [
     {
-      image: "the Flash.jpg",
-      video: "The Flash.mp4",
-      title: "The Flash",
-      description: "serie - Flash",
-      genre: "Film",
-      year: 2014,
-      rating: 5,
-      duration: "49m 21s",
-      isFeatured: true,
-    },
-    {
       image: "Mario.jpg",
       video: "SUPER_MARIO.mp4",
       title: "SUPER MARIO",
